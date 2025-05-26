@@ -2,72 +2,44 @@
 
 namespace App;
 
-class GildedRose
-{
-    public $name;
+class GildedRose {
+    private $item;
 
-    public $quality;
+    public function __construct($name, $quality, $sellIn) {
+        $this->item = new Item($name, $sellIn, $quality);
+    }
 
-    public $sellIn;
-
-    public function __construct($name, $quality, $sellIn)
-    {
-        $this->name = $name;
-        $this->quality = $quality;
-        $this->sellIn = $sellIn;
+    public function __get(string $property) {
+        if (!property_exists($this->item, $property)) {
+            throw new \RuntimeException(
+                sprintf('Property "%s" does not exist in %s', $property, get_class($this->item))
+            );
+        }
+        return $this->item->$property;
     }
 
     public static function of($name, $quality, $sellIn) {
-        return new static($name, $quality, $sellIn);
+        return new self($name, $quality, $sellIn);
     }
 
-    public function tick()
-    {
-        if ($this->name != 'Aged Brie' and $this->name != 'Backstage passes to a TAFKAL80ETC concert') {
-            if ($this->quality > 0) {
-                if ($this->name != 'Sulfuras, Hand of Ragnaros') {
-                    $this->quality = $this->quality - 1;
-                }
-            }
-        } else {
-            if ($this->quality < 50) {
-                $this->quality = $this->quality + 1;
+    public function tick() {
+        $updater = new Updater();
 
-                if ($this->name == 'Backstage passes to a TAFKAL80ETC concert') {
-                    if ($this->sellIn < 11) {
-                        if ($this->quality < 50) {
-                            $this->quality = $this->quality + 1;
-                        }
-                    }
-                    if ($this->sellIn < 6) {
-                        if ($this->quality < 50) {
-                            $this->quality = $this->quality + 1;
-                        }
-                    }
-                }
-            }
-        }
-
-        if ($this->name != 'Sulfuras, Hand of Ragnaros') {
-            $this->sellIn = $this->sellIn - 1;
-        }
-
-        if ($this->sellIn < 0) {
-            if ($this->name != 'Aged Brie') {
-                if ($this->name != 'Backstage passes to a TAFKAL80ETC concert') {
-                    if ($this->quality > 0) {
-                        if ($this->name != 'Sulfuras, Hand of Ragnaros') {
-                            $this->quality = $this->quality - 1;
-                        }
-                    }
-                } else {
-                    $this->quality = $this->quality - $this->quality;
-                }
-            } else {
-                if ($this->quality < 50) {
-                    $this->quality = $this->quality + 1;
-                }
-            }
+        switch ($this->item->name) {
+            case 'Aged Brie':
+                $updater->agedBrie($this->item);
+                break;
+            case 'Backstage passes to a TAFKAL80ETC concert':
+                $updater->backstagePasses($this->item);
+                break;
+            case 'Sulfuras, Hand of Ragnaros':
+                $updater->sulfuras($this->item);
+                break;
+            case 'Conjured Mana Cake':
+                $updater->updateConjured($this->item);
+                break;
+            default:
+                $updater->updateNormal($this->item);
         }
     }
 }

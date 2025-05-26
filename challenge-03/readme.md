@@ -39,3 +39,20 @@ is a legendary item and as such its Quality is 80 and it never alters.
 1. Refactor the monstrous code in the `GildedRose.php` class.
 2. Add a new item type, "Conjured". The specs for this item are commented out in the `GildedRoseSpec.php` file.
 
+<!-- OTHERS -->
+# Refactorización Gilded Rose
+### Con PHP nativo y composer:
+```bash
+composer install
+```
+```bash
+composer exec kahlan spec/GildedRoseSpec.php -- --reporter=verbose
+```
+### Con lando:
+
+```bash
+make install
+```
+```bash
+make run-tests
+```

@@ -19,3 +19,15 @@
 
 - Upload your solutions to a public repository in GitHub or a similar service.
 - Share your repository link with us by email to erick@medlink.la
+
+## Requisitos para ejecutar el reto
+
+- PHP 7.4+
+- Composer
+- Opcional: Lando (v3.24.3+) y make
+
+## Iniciar lando
+
+```bash
+lando start
+```
