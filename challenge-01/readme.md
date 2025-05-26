@@ -16,3 +16,14 @@ Output: 1,4,13
 Input: array("1, 3, 9, 10, 17, 18", "1, 4, 9, 10")
 Output: 1,9,10
 ```
+
+# Ejecutar el challenge 
+### Ejecutar con PHP nativo:
+```bash
+php index.php
+```
+### Ejecutar con lando:
+
+```bash
+lando php index.php
+```

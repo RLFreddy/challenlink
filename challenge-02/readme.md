@@ -21,3 +21,14 @@ Output: aksfaje
 Input: array("aaffhkksemckelloe", "fhea")
 Output: affhkkse
 ```
+
+# Ejecutar el challenge 
+### Ejecutar con PHP nativo:
+```bash
+php index.php
+```
+### Ejecutar con lando:
+
+```bash
+lando php index.php
+```

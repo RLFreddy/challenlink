@@ -41,14 +41,14 @@ is a legendary item and as such its Quality is 80 and it never alters.
 
 <!-- OTHERS -->
 # Refactorización Gilded Rose
-### Con PHP nativo y composer:
+### Instalar y ejecutar con PHP nativo y composer:
 ```bash
 composer install
 ```
 ```bash
 composer exec kahlan spec/GildedRoseSpec.php -- --reporter=verbose
 ```
-### Con lando:
+### Instalar y ejecutar con lando:
 
 ```bash
 make install
